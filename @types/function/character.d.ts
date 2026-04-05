@@ -11,7 +11,7 @@ type Character = {
   extensions: {
     regex_scripts: TavernRegex[];
     tavern_helper: {
-      scripts: Record<string, any>[];
+      scripts: ScriptTree[];
       variables: Record<string, any>;
     };
     [other: string]: any;
@@ -24,6 +24,13 @@ type Character = {
  * @returns 角色卡名称列表
  */
 declare function getCharacterNames(): string[];
+
+/**
+ * 获取当前角色卡名称
+ *
+ * @returns 当前角色卡名称, 如果当前没有角色卡, 则返回 `null`
+ */
+declare function getCurrentCharacterName(): string | null;
 
 /**
  * 新建 `character_name` 角色卡, 内容为 `character`
@@ -62,10 +69,15 @@ declare function createOrReplaceCharacter(
  * 删除 `character_name` 角色卡
  *
  * @param character_name 角色卡名称
+ * @param options 可选选项
+ *   - `delete_chats:boolean`: 是否要同时删除角色卡的聊天文件
  *
  * @returns 是否成功删除, 可能因角色卡不存在等原因而失败
  */
-declare function deleteCharacter(character_name: LiteralUnion<'current', string>): Promise<boolean>;
+declare function deleteCharacter(
+  character_name: LiteralUnion<'current', string>,
+  options?: { delete_chats?: boolean },
+): Promise<boolean>;
 
 /**
  * 获取 `character_name` 角色卡的内容
