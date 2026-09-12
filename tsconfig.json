@@ -11,9 +11,16 @@
     ],
     "target": "ESNext",
     "module": "ESNext",
+    "rootDir": ".",
     "outDir": "dist",
-    "baseUrl": "src",
-    "paths": {},
+    "paths": {
+      "@util/*": [
+        "./util/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ]
+    },
     "moduleDetection": "auto",
     "moduleResolution": "bundler",
     "allowUmdGlobalAccess": true,
@@ -23,6 +30,7 @@
     "checkJs": false,
     "sourceMap": true,
     "strict": true,
+    "jsx": "react-jsx",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -32,8 +40,11 @@
   },
   "include": [
     "@types",
+    "初始模板",
+    "示例",
     "src",
-    "global.d.ts",
+    "util",
+    "*.d.ts",
   ],
   "exclude": [
     "**/dist/**",
